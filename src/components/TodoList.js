@@ -9,6 +9,12 @@ export default class TodoList extends Component {
     console.log('store.getState()', store.getState())
     // 当组件的props或state发生变化时，render函数就会执行
     this.state = store.getState()
+    store.subscribe(this.handleStoreChange)
+  }
+
+  handleStoreChange = () => {
+    // console.log('store changed')
+    this.setState(store.getState())
   }
 
 
@@ -28,11 +34,15 @@ export default class TodoList extends Component {
 
   handleSubmit = e => {
     const inputValue = this.state.inputValue
+    const action = {
+      type: 'ADD_TODO_ITEM'
+    }
     if (inputValue.trim() !== '') {
-      this.setState((prevState) => ({
-        inputValue: '',
-        list: [...prevState.list, prevState.inputValue]
-      }))
+      // this.setState((prevState) => ({
+        //   inputValue: '',
+        //   list: [...prevState.list, prevState.inputValue]
+        // }))
+      store.dispatch(action)
     }
   }
 

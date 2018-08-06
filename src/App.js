@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import TodoList from './components/TodoList'
+// import TodoList from './components/TodoList'
 import './style.less'
+import TodoList from './containers/TodoList'
 // import {CSSTransition} from 'react-transition-group'
 
 class App extends Component {
@@ -17,7 +18,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <h1>TodoList</h1>
+        {/* <h1>TodoList</h1> */}
         <TodoList />
       </div>
     )
