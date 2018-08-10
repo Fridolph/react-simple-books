@@ -44,6 +44,9 @@ export default (state = initialState, action) => {
     case types.GET_ARTICLE_MORE:
       return {...state, artPage: action.page}
 
+    case types.SHOW_BACK_TOP:
+      return {...state, showScroll: action.showScroll}
+
     default:
       return state
   }

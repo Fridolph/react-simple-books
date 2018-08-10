@@ -88,5 +88,7 @@ export const ReadMoreBtn = styled.div`
   }
   &.disabled {
     cursor: not-allowed;
+    background: #eee;
+    color: #bbb;
   }
 `

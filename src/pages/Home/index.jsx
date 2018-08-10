@@ -19,8 +19,16 @@ class Home extends Component {
     this.props.getDownload()
   }
 
+  handleScrollTop = () => {
+    window.scrollTo(0, 0)
+  }
+
+  bindEvents = () => {
+    window.addEventListener('scroll', this.props.changeScrollTopShow)
+  }
+
   render() {
-    const {topicList, articleList, hot, download, recommend, changeRecommend} = this.props
+    const {topicList, articleList, hot, download, recommend, changeRecommend, showScroll} = this.props
     return (
       <HomeWrapper>
         <HomeMain>
@@ -35,13 +43,15 @@ class Home extends Component {
           <Download download={download} />
           <Recommend recommend={recommend} changeRecommend={changeRecommend} />
         </HomeSide>
-        <BackTop />
+
+        {showScroll ? <BackTop handleScrollTop={this.handleScrollTop} /> : null}
       </HomeWrapper>
     )
   }
 
   componentDidMount() {
     this.initApi()
+    this.bindEvents()
   }
 }
 
@@ -49,14 +59,23 @@ const mapState = state => ({
   topicList: state.home.topicList,
   articleList: state.home.articleList,
   hot: state.home.hot,
-  download: state.home.download
+  download: state.home.download,
+  showScroll: state.home.showScroll
 })
 
 const mapDispatch = dispatch => ({
   getToplicList: () => dispatch(actions.getTopicList()),
   getArticleList: () => dispatch(actions.getArticleList()),
   getHot: () => dispatch(actions.getHot()),
-  getDownload: () => dispatch(actions.getDownload())
+  getDownload: () => dispatch(actions.getDownload()),
+  changeScrollTopShow: () => {
+    let scrollTop = document.documentElement.scrollTop
+    if (scrollTop > 400) {
+      dispatch(actions.showBackTop(true))
+    } else {
+      dispatch(actions.showBackTop(false))
+    }
+  }
 })
 
 export default connect(mapState, mapDispatch)(Home)

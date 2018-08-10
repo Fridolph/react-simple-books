@@ -1,21 +1,10 @@
 import React from 'react'
-import {connect} from 'react-redux'
-import './style'
+import {BackTopWrapper} from './style'
 
-function BackTop(props) {
+export default function BackTop(props) {
   return (
-    <BackTop>
-      <a href="">回到顶部</a>
-    </BackTop>
+    <BackTopWrapper onClick={props.handleScrollTop}>
+      <i className="iconfont">&#xe669;</i>
+    </BackTopWrapper>
   )
 }
-
-const mapState = state => ({
-
-})
-
-const mapDispatch = dispatch => ({
-
-})
-
-export default connect(mapState, mapDispatch)(BackTop)

@@ -46,6 +46,11 @@ export const getArticleMore = page => ({
   page
 })
 
+export const showBackTop = is => ({
+  type: types.SHOW_BACK_TOP,
+  showScroll: is
+})
+
 // thunk
 export const getTopicList = () => dispatch => {
   GET('/topicList.json').then(res => {
