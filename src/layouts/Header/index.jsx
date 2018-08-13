@@ -1,10 +1,11 @@
-import React, {Component} from 'react'
+import React, {PureComponent} from 'react'
+import {Link} from 'react-router-dom'
 import {HeaderWrapper, Logo, Nav, NavItem, NavSearch, SearchWrapper, Addition, Button, SearchInfo, SearchInfoTitle, SearchInfoSwitch, SearchList, SearchListItem} from './style'
 // import {CSSTransition} from 'react-transition-group'
 import {connect} from 'react-redux'
 import * as actions from './redux/actions'
 
-class Header extends Component {
+class Header extends PureComponent {
   getListArea = () => {
     const {isFocus, isHover, searchList, page, totalPage, mouseEnter, mouseLeave, changePage} = this.props
     // 将immutable数组 转为一般js数组
@@ -34,7 +35,9 @@ class Header extends Component {
     const {isFocus, searchList, inputFocus, inputBlur} = this.props
     return (
       <HeaderWrapper>
-        <Logo />
+        <Link to="/">
+          <Logo />
+        </Link>
         <Nav>
           <NavItem className="left" style={{color: '#ea6f5a'}}>首页</NavItem>
           <NavItem className="left">下载App</NavItem>

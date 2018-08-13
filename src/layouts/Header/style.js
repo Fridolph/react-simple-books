@@ -8,9 +8,7 @@ export const HeaderWrapper = styled.header`
   position: relative;
 `
 
-export const Logo = styled.a.attrs({
-  href: '/'
-})`
+export const Logo = styled.div`
   display: block;
   position: absolute;
   top: 0;

@@ -3,6 +3,7 @@ import {BrowserRouter, Route} from 'react-router-dom'
 import {Provider} from 'react-redux'
 import store from './redux/store'
 import Home from './pages/Home'
+import Login from './pages/Login'
 import Detail from './pages/Detail'
 import LayoutHeader from './layouts/Header'
 import './style.less'
@@ -11,15 +12,16 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <Fragment>
-          <LayoutHeader />
-          <BrowserRouter>
+        <BrowserRouter>
+          <Fragment>
+            <LayoutHeader />
             <Fragment>
               <Route path="/" exact component={Home} />
-              <Route path="/detail" exact component={Detail} />
+              <Route path="/login" exact component={Login} />
+              <Route path="/detail/:id" exact component={Detail} />
             </Fragment>
-          </BrowserRouter>
-        </Fragment>
+          </Fragment>
+        </BrowserRouter>
       </Provider>
     )
   }
