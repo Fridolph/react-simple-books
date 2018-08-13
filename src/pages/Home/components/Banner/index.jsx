@@ -1,8 +1,8 @@
-import React, {Component} from 'react'
+import React, {PureComponent} from 'react'
 import {Carousel} from 'antd'
 import {BannerWrapper} from './style'
 
-export default class Banner extends Component {
+export default class Banner extends PureComponent {
   render() {
     return (
       <BannerWrapper>

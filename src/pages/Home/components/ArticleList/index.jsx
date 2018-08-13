@@ -1,10 +1,11 @@
-import React, {Component, Fragment} from 'react'
+import React, {PureComponent, Fragment} from 'react'
 import {connect} from 'react-redux'
 import {actions} from '../../redux'
+import {Link} from 'react-router-dom'
 import {ArticleListWrapper, ArticleListItem, ArticleListImageWrapper, ReadMoreBtn} from './style'
 import {Icon} from 'antd'
 
-class ArticleList extends Component {
+class ArticleList extends PureComponent {
   renderList = () => {
     const { list, artPage } = this.props
     let arr = list.slice(0, artPage * 20)
@@ -13,9 +14,12 @@ class ArticleList extends Component {
       let author = arr[0]
       let comment = arr[1]
       let like = arr[2]
+
       return  (
         <ArticleListItem key={item.title}>
-          <h2 className="item-title">{item.title}</h2>
+          <h2 className="item-title">
+            <Link to={`/detail/${item.id}`}>{item.title}</Link>
+          </h2>
           <p className="item-desc">{item.summary}</p>
           <div className="item-info">
             <span className="author">{author}</span>

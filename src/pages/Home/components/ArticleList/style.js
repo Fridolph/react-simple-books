@@ -20,11 +20,16 @@ export const ArticleListItem = styled.div`
   }
   .item-title {
     font-size: 18px;
-    color: #333;
     margin-top: 10px;
     line-height: 1.5;
     font-weight: bold;
     margin-bottom: 5px;
+    a {
+      color: #333;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
   }
   .item-desc {
     color: #999;

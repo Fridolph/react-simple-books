@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {PureComponent} from 'react'
 import {connect} from 'react-redux'
 import {HomeWrapper, HomeMain, HomeSide} from './style'
 import {actions} from './redux'
@@ -11,7 +11,7 @@ import Download from './components/Download'
 import Recommend from './components/Recommend'
 import ArticleList from './components/ArticleList'
 
-class Home extends Component {
+class Home extends PureComponent {
   initApi = () => {
     this.props.getToplicList()
     this.props.getArticleList()
@@ -52,6 +52,10 @@ class Home extends Component {
   componentDidMount() {
     this.initApi()
     this.bindEvents()
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.props.changeScrollTopShow)
   }
 }
 
