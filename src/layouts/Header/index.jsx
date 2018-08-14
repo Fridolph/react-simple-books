@@ -1,9 +1,10 @@
 import React, {PureComponent} from 'react'
 import {Link} from 'react-router-dom'
-import {HeaderWrapper, Logo, Nav, NavItem, NavSearch, SearchWrapper, Addition, Button, SearchInfo, SearchInfoTitle, SearchInfoSwitch, SearchList, SearchListItem} from './style'
+import {HeaderWrapper, Logo, Nav, NavItem, NavSearch, SearchWrapper, Addition,  SearchInfo, SearchInfoTitle, SearchInfoSwitch, SearchList, SearchListItem} from './style'
 // import {CSSTransition} from 'react-transition-group'
 import {connect} from 'react-redux'
 import * as actions from './redux/actions'
+import {logout} from '../../pages/Login/redux/actions'
 
 class Header extends PureComponent {
   getListArea = () => {
@@ -32,7 +33,8 @@ class Header extends PureComponent {
   }
 
   render() {
-    const {isFocus, searchList, inputFocus, inputBlur} = this.props
+    const {isFocus, isLogin, searchList} = this.props
+    const {inputFocus, inputBlur, handleLogout} = this.props
     return (
       <HeaderWrapper>
         <Link to="/">
@@ -49,16 +51,18 @@ class Header extends PureComponent {
             <i className="iconfont icon--search">&#xe64a;</i>
             {this.getListArea(isFocus)}
           </SearchWrapper>
-          <NavItem className="right">登录</NavItem>
+          <NavItem className="right">
+            {isLogin ? <a onClick={handleLogout}>退出</a> : <Link to="/login">登录</Link>}
+          </NavItem>
           <NavItem className="right">
             <i className="iconfont">&#xe636;</i>
           </NavItem>
         </Nav>
         <Addition>
-          <Button className="writting">
+          <Link className="button writting" to="/writter">
             <i className="iconfont">&#xe600;</i>写文章
-          </Button>
-          <Button className="reg">注册</Button>
+          </Link>
+          <span className="button reg">注册</span>
         </Addition>
       </HeaderWrapper>
     )
@@ -66,10 +70,11 @@ class Header extends PureComponent {
 }
 
 const mapState = state => ({
+  page: state.header.page,
+  isLogin: state.login.isLogin,
   isFocus: state.header.isFocus,
   isHover: state.header.isHover,
   searchList: state.header.searchList,
-  page: state.header.page,
   totalPage: state.header.totalPage
 })
 
@@ -88,7 +93,8 @@ const mapDispatch = dispatch => ({
     } else {
       dispatch(actions.handleChangePage(1))
     }
-  }
+  },
+  handleLogout: () => dispatch(logout())
 })
 
 

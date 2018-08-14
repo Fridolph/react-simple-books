@@ -134,22 +134,20 @@ export const Addition = styled.div`
   right: 0;
   top: 0;
   height: 59px;
-`
 
-export const Button = styled.div`
-  float: right;
-  margin-top: 12px;
-  margin-right: 20px;
-  padding: 0 20px;
-  line-height: 34px;
-  border-radius: 24px;
-  border: 1px solid #ec6149;
-  font-size: 14px;
-  &.reg {
+  .button {
+    float: right;
+    margin-top: 12px;
+    margin-right: 20px;
+    padding: 0 20px;
+    line-height: 34px;
+    border-radius: 24px;
+    font-size: 14px;
+    border: 1px solid #ec6149;
     color: #ec6149;
-  }
-  &.writting {
-    color: #fff;
-    background: #ec6149;
+    &.writting {
+      background: #ec6149;
+      color: #fff;
+    }
   }
 `
